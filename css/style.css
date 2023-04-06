@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: black;
+}
+.game-board {
+  width: 100%;
+  height: 80vh;
+  margin: 0 auto;
+  border-bottom: 12px solid green;
+  position: relative;
+  overflow: hidden;
+  background-color: #0093e9;
+  background-image: linear-gradient(160deg, #0093e9 0%, #5eb4fa 80%);
+}
+.clouds {
+  position: absolute;
+  width: 550px;
+  animation: clouds-animation 15s infinite linear;
+}
+@keyframes clouds-animation {
+  from {
+    right: -550px;
+  }
+  to {
+    right: 100%;
+  }
+}
+/* ESTILIZAÇÃO DO TUBO E DEFINIÇÕES DE ANIMAÇÕES*/
+.pipe {
+  position: absolute;
+  bottom: 0;
+  width: 80px;
+
+  animation: pipe-animation 1.8s infinite linear;
+}
+@keyframes pipe-animation {
+  from {
+    right: -80px;
+  }
+  to {
+    right: 100%;
+  }
+}
+/* ESTILIZAÇÃO DO MARIO E DEFINIÇÕES DE ANIMAÇÕES*/
+.mario {
+  width: 150px;
+  position: absolute;
+  bottom: 0;
+}
+.jump {
+  animation: jump 500ms ease-out;
+}
+@keyframes jump {
+  0% {
+    bottom: 0;
+  }
+  40% {
+    bottom: 180px;
+  }
+  50% {
+    bottom: 180px;
+  }
+  60% {
+    bottom: 180px;
+  }
+  100% {
+    bottom: 0;
+  }
+}
+/*----------------------------------------*/
+.terra {
+  position: absolute;
+  bottom: 0;
+}
