@@ -38,8 +38,23 @@ if (
     navigator.userAgent
   )
 ) {
-  // Dispositivo móvel - adiciona o evento de toque na tela
-  document.addEventListener("touchstart", jump);
+  const jumpSound = new Audio("/sounds/smb_jump-small.wav");
+
+  // Adiciona eventos de toque na tela para dispositivos móveis
+  let initialY = null;
+  document.addEventListener("touchstart", (event) => {
+    initialY = event.touches[0].clientY;
+  });
+  document.addEventListener("touchend", (event) => {
+    if (initialY === null) return;
+    const currentY = event.changedTouches[0].clientY;
+    const diffY = initialY - currentY;
+    if (diffY > 0) {
+      jump();
+      jumpSound.play();
+    }
+    initialY = null;
+  });
 } else {
   // Computador - adiciona o evento de keyup e remove o evento de keydown
   const keyDownHandler = () => {
