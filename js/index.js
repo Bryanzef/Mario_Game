@@ -1,4 +1,3 @@
-//Pega o evento de clique
 const mario = document.querySelector(".mario");
 const pipe = document.querySelector(".pipe");
 
@@ -15,9 +14,8 @@ const loop = setInterval(() => {
     .getComputedStyle(mario)
     .bottom.replace("px", "");
 
-  //Quando encostar no tubo a animação para !
+  // Quando encostar no tubo a animação para!
   if (pipePosition <= 120 && pipePosition > 0 && marioPosition < 88) {
-    /* */
     pipe.style.animation = "none";
     pipe.style.left = `${pipePosition}px`;
 
@@ -28,12 +26,15 @@ const loop = setInterval(() => {
     mario.style.width = "75px";
     mario.style.marginLeft = "48px";
 
-    clearInterval();
+    clearInterval(loop);
+
+    const deathSound = new Audio("/sounds/smb_mariodie.wav");
+    deathSound.play();
   }
 }, 10);
 
 if (
-  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+  /Android|Motorola|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
     navigator.userAgent
   )
 ) {
@@ -47,9 +48,11 @@ if (
 
   document.addEventListener("keydown", keyDownHandler);
 
+  const jumpSound = new Audio("/sounds/smb_jump-small.wav");
   document.addEventListener("keyup", function (event) {
     if (event.code === "Space") {
       jump();
+      jumpSound.play();
     }
   });
 }
